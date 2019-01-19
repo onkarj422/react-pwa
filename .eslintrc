@@ -1,0 +1,36 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "react",
+        "jsx-control-statements"
+    ],
+    "rules": {
+        "max-len": 0,
+        "indent": [
+            "warn",
+            4
+        ],
+        "react/jsx-indent": [
+            "warn",
+            4
+        ],
+        "react/jsx-filename-extension": [
+            0
+        ],
+        "react/jsx-no-undef": [
+            2,
+            {
+                "allowGlobals": true
+            }
+        ]
+    },
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended",
+        "plugin:jsx-control-statements/recommended"
+    ],
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}
