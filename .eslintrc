@@ -6,6 +6,7 @@
     ],
     "rules": {
         "max-len": 0,
+        "react/no-array-index-key": "off",
         "indent": [
             "warn",
             4
@@ -27,7 +28,9 @@
     "extends": [
         "airbnb",
         "plugin:react/recommended",
-        "plugin:jsx-control-statements/recommended"
+        "plugin:jsx-control-statements/recommended",
+        "prettier",
+        "prettier/react"
     ],
     "env": {
         "browser": true,

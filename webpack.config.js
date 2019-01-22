@@ -17,6 +17,13 @@ module.exports = {
         path: path.join(__dirname, 'build'),
         filename: 'bundle.js',
     },
+    devtool: "source-map",
+    mode: "development",
+    devServer: {
+        historyApiFallback: true,
+        inline: true,
+        port: 8080
+    },
     module: {
         rules: [
             {
