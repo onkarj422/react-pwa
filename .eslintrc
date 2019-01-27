@@ -7,6 +7,9 @@
     "rules": {
         "max-len": 0,
         "react/no-array-index-key": "off",
+        "no-unused-vars": "warn",
+        "react/require-default-props": [0],
+        "react/no-unused-prop-types": [0],
         "indent": [
             "warn",
             4
