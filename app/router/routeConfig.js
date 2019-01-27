@@ -1,22 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Attendance from '../modules/Attendance'
+import Dashboard from '../modules/Dashboard';
 
-const Dashboard = () => <div>This is dashboard component</div>;
-const Attendance = (props) => {
-    const { children } = props;
-    return (
-        <div>
-            These are attendance child routes
-            <Link to="/attendance/view"><button type="button">Click Here</button></Link>
-            <Link to="/attendance/take"><button type="button">Click Here</button></Link>
-            {children}
-        </div>
-    )
-};
-Attendance.propTypes = {
-    children: PropTypes.element.isRequired
-}
 const ViewAttendance = () => <div>This is to view attendance</div>;
 const TakeAttendance = () => <div>Start Attendance!</div>;
 const About = () => <div>This is about us</div>;
@@ -28,6 +13,7 @@ const routes = [
         path: ['/', '/dashboard'],
         component: Dashboard,
         exact: true,
+        title: 'Home',
     },
     {
         path: '/attendance',
@@ -36,17 +22,19 @@ const routes = [
             {
                 path: '/attendance/take',
                 component: TakeAttendance,
+                title: 'Start Attendance',
             },
             {
                 path: '/attendance/view',
                 component: ViewAttendance,
+                title: 'View Attendance',
             },
         ],
+        title: 'Attendance',
     },
     {
         path: '/login',
         component: Login,
-        exact: true,
     },
     {
         path: '/register',
@@ -57,6 +45,7 @@ const routes = [
         path: '/about',
         component: About,
         exact: true,
+        title: 'About',
     },
 ];
 

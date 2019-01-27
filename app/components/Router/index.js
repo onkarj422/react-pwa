@@ -8,13 +8,11 @@ class Router extends React.Component {
         this.state = {};
     }
 
-    renderComponent = ({ match, ...rest }, { component: Component, routes }) => (
+    renderComponent = ({ match, ...rest }, { component: Component, routes, ...route }) => (
         <If condition={match}>
-            <Component {...rest} >
+            <Component {...rest} {...route} >
                 <If condition={routes && routes.length > 0}>
-                    <div>
-                        {routes.map(this.renderRoute)}
-                    </div>
+                    {routes.map(this.renderRoute)}
                 </If>
             </Component>
         </If>
