@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
 import ActionBar from '.';
 
 export const ActionBarContext = React.createContext();
-
-const styled = withStyles({
-    content: {
-        padding: 10
-    }
-});
 
 class ActionBarProvider extends React.Component {
     constructor(props) {
@@ -19,32 +12,29 @@ class ActionBarProvider extends React.Component {
             subTitle: '',
             actionLeft: null,
             actionsRight: [],
+            className: '',
         };
     }
 
-    set = (state) => {
+    setConfig = (state) => {
         this.setState(state);
     }
 
     render() {
-        const { classes, children } = this.props;
+        const { children } = this.props;
         return (
             <ActionBarContext.Provider value={{
-                state: this.state,
-                setConfig: this.set
+                setConfig: this.setConfig
             }}>
                 <ActionBar {...this.state} />
-                <div className={classes.content}>
-                    {children}
-                </div>
+                {children}
             </ActionBarContext.Provider>
         );
     }
 }
 
 ActionBarProvider.propTypes = {
-    classes: PropTypes.instanceOf(Object),
     children: PropTypes.node
 };
 
-export default styled(ActionBarProvider);
+export default ActionBarProvider;

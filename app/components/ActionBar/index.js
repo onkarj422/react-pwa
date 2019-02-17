@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, AppBar, Toolbar, withStyles } from '@material-ui/core';
+import classNames from 'classnames';
 
 const style = withStyles({
     root: {
@@ -13,9 +14,6 @@ const style = withStyles({
         marginLeft: -12,
         marginRight: 20,
     },
-    content: {
-        padding: 10
-    }
 });
 
 class ActionBar extends React.Component {
@@ -25,9 +23,9 @@ class ActionBar extends React.Component {
     }
 
     render() {
-        const { position, title, classes, actionLeft, actionsRight } = this.props;
+        const { position, title, classes, className, actionLeft, actionsRight, ...rest } = this.props;
         return (
-            <AppBar className={classes.root} position={position}>
+            <AppBar className={classNames(classes.root, className)} position={position} {...rest}>
                 <Toolbar>
                     <If condition={actionLeft}>
                         <div className={classes.leftAction}>
@@ -61,6 +59,7 @@ ActionBar.propTypes = {
         PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
     ]),
+    className: PropTypes.instanceOf(Object),
 };
 
 export default style(ActionBar);
