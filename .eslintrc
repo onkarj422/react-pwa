@@ -10,6 +10,7 @@
         "no-unused-vars": "warn",
         "react/require-default-props": [0],
         "react/no-unused-prop-types": [0],
+        "react/destructuring-assignment": ["warn"],
         "indent": [
             "warn",
             4
