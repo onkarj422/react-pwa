@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import withActionBar from '../../components/ActionBar/withActionBar';
 
 class Attendance extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    componentDidMount = () => {
+        const { actionBar } = this.props;
+        actionBar.setConfig({
+            title: 'Attendance'
+        });
     }
 
     render() {
@@ -37,6 +45,7 @@ Attendance.propTypes = {
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element)
     ]),
+    actionBar: PropTypes.instanceOf(Object),
 }
 
-export default Attendance;
+export default withActionBar(Attendance);

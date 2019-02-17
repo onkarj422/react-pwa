@@ -1,8 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButton } from '@material-ui/core';
+import { IconButton, withStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import withActionBar from '../../components/ActionBar/withActionBar';
+
+const styled = withStyles(theme => ({
+    actionBar: {
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: 240
+        }
+    },
+    menuButton: {
+        [theme.breakpoints.up('md')]: {
+            display: 'none',
+        },
+    }
+}));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -13,10 +26,11 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount = () => {
-        const { actionBar } = this.props;
+        const { actionBar, classes } = this.props;
         actionBar.setConfig({
             title: 'Dashboard',
             actionLeft: this.renderLeftMenu(),
+            className: classes.actionBar,
         });
     }
 
@@ -26,11 +40,14 @@ class Dashboard extends React.Component {
         }));
     }
 
-    renderLeftMenu = () => (
-        <IconButton onClick={this.setClickMenu} color="inherit" aria-label="Menu">
-            <MenuIcon />
-        </IconButton>
-    )
+    renderLeftMenu = () => {
+        const { classes: { menuButton } } = this.props;
+        return (
+            <IconButton className={menuButton} onClick={this.setClickMenu} color="inherit" aria-label="Menu">
+                <MenuIcon />
+            </IconButton>
+        )
+    }
 
     render() {
         const { children } = this.props;
@@ -53,6 +70,7 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
     children: PropTypes.element,
     actionBar: PropTypes.instanceOf(Object),
+    classes: PropTypes.instanceOf(Object),
 };
 
-export default withActionBar(Dashboard);
+export default withActionBar(styled(Dashboard));
