@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SwipeableDrawer, withStyles, withWidth } from '@material-ui/core';
 
-const styled = withStyles({
-    root: {
-        display: 'flex',
+export const AppDrawerContext = React.createContext();
+
+const styled = withStyles(theme => ({
+    mainContent: {
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 0,
+        },
+        [theme.breakpoints.up('md')]: {
+            marginLeft: 240,
+        },
     }
-});
+}));
 
 class AppDrawerProvider extends Component {
     constructor(props) {
@@ -14,6 +21,7 @@ class AppDrawerProvider extends Component {
         this.state = {
             open: false,
             renderContent: () => null,
+            className: '',
         };
     }
 
@@ -29,21 +37,34 @@ class AppDrawerProvider extends Component {
         this.setState(state => ({ open: !toggle ? map[toggle] : !state.open }))
     }
 
+    getDrawerVariant = (width) => ({
+        xs: 'temporary',
+        sm: 'temporary',
+        md: 'permanent',
+    }[width]);
+
     render() {
-        const { open, renderContent, classes } = this.state;
+        const { open, renderContent, className } = this.state;
+        const { classes: { mainContent }, children, width } = this.props;
         return (
-            <div className={classes.root}>
+            <AppDrawerContext.Provider value={{
+                setContent: this.setContent,
+                toggle: this.toggle,
+            }}>
                 <SwipeableDrawer
+                    className={className}
                     open={open}
+                    anchor="left"
+                    variant={this.getDrawerVariant(width)}
                     onOpen={() => this.toggle('open')}
                     onClose={() => this.toggle('close')}
                 >
                     {renderContent()}
                 </SwipeableDrawer>
-                <main>
-                    Main Content
-                </main>
-            </div>
+                <div className={mainContent}>
+                    {children}
+                </div>
+            </AppDrawerContext.Provider>
         );
     }
 }
@@ -51,6 +72,7 @@ class AppDrawerProvider extends Component {
 AppDrawerProvider.propTypes = {
     classes: PropTypes.instanceOf(Object),
     width: PropTypes.string,
+    children: PropTypes.node,
 }
 
-export default styled(withWidth(AppDrawerProvider));
+export default withWidth()(styled(AppDrawerProvider));
