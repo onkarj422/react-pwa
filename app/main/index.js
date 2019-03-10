@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../theme/material-ui/theme';
-import AppShell from '../components/AppShell';
+import AppShellProvider from '../components/AppShell/AppShellProvider';
+import Layout from '../modules/Layout';
 
 const rootStyles = withStyles({
     '@global': {
@@ -24,9 +25,11 @@ class App extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <CssBaseline>
-                    <AppShell>
-                        {children}
-                    </AppShell>
+                    <AppShellProvider>
+                        <Layout>
+                            {children}
+                        </Layout>
+                    </AppShellProvider>
                 </CssBaseline>
             </MuiThemeProvider>
         );
