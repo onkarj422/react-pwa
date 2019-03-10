@@ -1,62 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButton, withStyles } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import withActionBar from '../../components/ActionBar/withActionBar';
+import { withStyles } from '@material-ui/core';
+import withAppShell from '../../components/AppShell/withAppShell';
 
 const styled = withStyles(theme => ({
-    actionBar: {
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: 240
-        }
+    drawer: {
+        width: 240,
     },
-    menuButton: {
-        [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
-    }
 }));
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            menuClicked: false,
-        };
+        this.state = {};
     }
 
     componentDidMount = () => {
-        const { actionBar, classes } = this.props;
-        actionBar.setConfig({
-            title: 'Dashboard',
-            actionLeft: this.renderLeftMenu(),
-            className: classes.actionBar,
-        });
-    }
-
-    setClickMenu = () => {
-        this.setState(state => ({
-            menuClicked: !state.menuClicked,
-        }));
-    }
-
-    renderLeftMenu = () => {
-        const { classes: { menuButton } } = this.props;
-        return (
-            <IconButton className={menuButton} onClick={this.setClickMenu} color="inherit" aria-label="Menu">
-                <MenuIcon />
-            </IconButton>
-        )
+        const { shell: { actionBar } } = this.props;
+        actionBar.setConfig({ title: 'Dashboard' });
     }
 
     render() {
-        const { children } = this.props;
-        const { menuClicked } = this.state;
+        const { children, location } = this.props;
         return (
             <div>
-                <If condition={menuClicked}>
-                    Clicked menu just now!
-                </If>
+                {location.pathname}
                 {children}
             </div>
         );
@@ -70,7 +38,9 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
     children: PropTypes.element,
     actionBar: PropTypes.instanceOf(Object),
+    shell: PropTypes.instanceOf(Object),
     classes: PropTypes.instanceOf(Object),
+    location: PropTypes.instanceOf(Object),
 };
 
-export default withActionBar(styled(Dashboard));
+export default withAppShell(styled(Dashboard));

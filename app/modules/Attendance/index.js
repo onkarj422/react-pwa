@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withActionBar from '../../components/ActionBar/withActionBar';
+import withAppShell from '../../components/AppShell/withAppShell';
 
 class Attendance extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class Attendance extends React.Component {
     }
 
     componentDidMount = () => {
-        const { actionBar } = this.props;
+        const { shell: { actionBar } } = this.props;
         actionBar.setConfig({
             title: 'Attendance'
         });
@@ -45,7 +45,7 @@ Attendance.propTypes = {
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element)
     ]),
-    actionBar: PropTypes.instanceOf(Object),
+    shell: PropTypes.instanceOf(Object),
 }
 
-export default withActionBar(Attendance);
+export default withAppShell(Attendance);
