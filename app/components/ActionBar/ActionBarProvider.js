@@ -9,7 +9,6 @@ class ActionBarProvider extends React.Component {
         super(props);
         this.state = {
             title: 'Default',
-            subTitle: '',
             actionLeft: null,
             actionsRight: [],
             className: '',
@@ -34,7 +33,7 @@ class ActionBarProvider extends React.Component {
 }
 
 ActionBarProvider.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
 };
 
 export default ActionBarProvider;

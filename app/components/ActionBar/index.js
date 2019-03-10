@@ -12,7 +12,7 @@ const style = withStyles({
     },
     leftAction: {
         marginLeft: -12,
-        marginRight: 20,
+        marginRight: 0,
     },
 });
 
@@ -59,7 +59,7 @@ ActionBar.propTypes = {
         PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
     ]),
-    className: PropTypes.instanceOf(Object),
+    className: PropTypes.string,
 };
 
 export default style(ActionBar);
