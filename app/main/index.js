@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../theme/material-ui/theme';
 import AppShellProvider from '../components/AppShell/AppShellProvider';
-import Layout from '../modules/Layout';
+import AppShellLayout from '../components/AppShell/AppShellLayout';
 
 const rootStyles = withStyles({
     '@global': {
@@ -26,9 +26,9 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
                 <CssBaseline>
                     <AppShellProvider>
-                        <Layout>
+                        <AppShellLayout>
                             {children}
-                        </Layout>
+                        </AppShellLayout>
                     </AppShellProvider>
                 </CssBaseline>
             </MuiThemeProvider>
