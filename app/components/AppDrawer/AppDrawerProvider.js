@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SwipeableDrawer, withStyles, withWidth } from '@material-ui/core';
+import { SwipeableDrawer, withWidth } from '@material-ui/core';
 
 export const AppDrawerContext = React.createContext();
-
-const styled = withStyles(theme => ({
-    mainContent: {
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: 0,
-        },
-        [theme.breakpoints.up('md')]: {
-            marginLeft: 240,
-        },
-    }
-}));
 
 class AppDrawerProvider extends Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
-            renderContent: () => null,
-            className: '',
+            renderDrawerContent: () => null,
+            drawerStyle: '',
+            mainContentStyle: '',
         };
-    }
-
-    setContent = (renderContent) => {
-        this.setState({ renderContent });
     }
 
     toggle = (toggle) => {
@@ -37,31 +23,49 @@ class AppDrawerProvider extends Component {
         this.setState(state => ({ open: !toggle ? map[toggle] : !state.open }))
     }
 
+    setDrawerContent = (renderDrawerContent) => {
+        this.setState({ renderDrawerContent });
+    }
+
+    setDrawerStyle = (drawerStyle) => {
+        this.setState({
+            drawerStyle
+        });
+    }
+
+    setMainContentStyle = (mainContentStyle) => {
+        this.setState({ mainContentStyle });
+    }
+
     getDrawerVariant = (width) => ({
         xs: 'temporary',
         sm: 'temporary',
-        md: 'permanent',
+        md: 'temporary',
+        lg: 'permanent',
+        xl: 'permanent',
     }[width]);
 
     render() {
-        const { open, renderContent, className } = this.state;
-        const { classes: { mainContent }, children, width } = this.props;
+        const { open, renderDrawerContent, drawerStyle, mainContentStyle } = this.state;
+        const { children, width } = this.props;
         return (
             <AppDrawerContext.Provider value={{
-                setContent: this.setContent,
+                setDrawerContent: this.setDrawerContent,
+                setMainContentStyle: this.setMainContentStyle,
+                setDrawerStyle: this.setDrawerStyle,
                 toggle: this.toggle,
             }}>
                 <SwipeableDrawer
-                    className={className}
+                    className={drawerStyle}
                     open={open}
                     anchor="left"
                     variant={this.getDrawerVariant(width)}
                     onOpen={() => this.toggle('open')}
                     onClose={() => this.toggle('close')}
                 >
-                    {renderContent()}
+                    {renderDrawerContent()}
                 </SwipeableDrawer>
-                <div className={mainContent}>
+                <div className={mainContentStyle}>
                     {children}
                 </div>
             </AppDrawerContext.Provider>
@@ -75,4 +79,4 @@ AppDrawerProvider.propTypes = {
     children: PropTypes.node,
 }
 
-export default withWidth()(styled(AppDrawerProvider));
+export default withWidth()(AppDrawerProvider);
