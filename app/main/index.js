@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../theme/material-ui/theme';
 import AppShellProvider from '../components/AppShell/AppShellProvider';
-import AppShellLayout from '../components/AppShell/AppShellLayout';
+import AppShellLayout from '../components/AppShellLayout';
 
 const rootStyles = withStyles({
     '@global': {

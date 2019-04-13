@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import withAppShell from './withAppShell';
-import styledLayout from './layoutStyles';
+import styledLayout from './styles';
+import withAppShellContext from '../AppShell/withAppShellContext';
 
 class AppShellLayout extends Component {
     constructor(props) {
@@ -54,4 +54,4 @@ AppShellLayout.propTypes = {
     children: PropTypes.node,
 };
 
-export default withAppShell(styledLayout(AppShellLayout));
+export default withAppShellContext(styledLayout(AppShellLayout));

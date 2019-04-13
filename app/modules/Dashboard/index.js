@@ -3,21 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import withAppShell from '../../components/AppShell/withAppShell';
 
-const styled = withStyles(theme => ({
+const styled = withStyles({
     drawer: {
         width: 240,
     },
-}));
+});
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-    }
-
-    componentDidMount = () => {
-        const { shell: { actionBar } } = this.props;
-        actionBar.setConfig({ title: 'Dashboard' });
     }
 
     render() {
@@ -37,10 +32,9 @@ Dashboard.defaultProps = {
 
 Dashboard.propTypes = {
     children: PropTypes.element,
-    actionBar: PropTypes.instanceOf(Object),
     shell: PropTypes.instanceOf(Object),
     classes: PropTypes.instanceOf(Object),
     location: PropTypes.instanceOf(Object),
 };
 
-export default withAppShell(styled(Dashboard));
+export default withAppShell(styled(Dashboard), { title: 'Dashboard' });

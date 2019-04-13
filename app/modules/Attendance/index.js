@@ -9,13 +9,6 @@ class Attendance extends React.Component {
         this.state = {};
     }
 
-    componentDidMount = () => {
-        const { shell: { actionBar } } = this.props;
-        actionBar.setConfig({
-            title: 'Attendance'
-        });
-    }
-
     render() {
         const { children } = this.props;
         return (
@@ -48,4 +41,4 @@ Attendance.propTypes = {
     shell: PropTypes.instanceOf(Object),
 }
 
-export default withAppShell(Attendance);
+export default withAppShell(Attendance, { title: 'Attendance' });

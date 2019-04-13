@@ -22,7 +22,9 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         inline: true,
-        port: 8080
+        port: 8080,
+        disableHostCheck: true,
+        host: '192.168.43.67',
     },
     module: {
         rules: [
