@@ -1,0 +1,36 @@
+.checkbox-group-container {
+    & .checkbox-group-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+     & .checkbox-group-search-container {
+         display: flex;
+         align-items: center;
+         padding-top: 10px;
+         & > svg {
+             position: absolute;
+             color: #e0e0e0;
+         }
+         & > input {
+            background: transparent;
+            border: none;
+            padding: 5px 5px 5px 30px;
+            font-size: 15px;
+            border-bottom: solid 2px #e0e0e0;
+            &:focus {
+                outline: none;
+                border-bottom-color: #03a9f4;
+            }
+         }
+     }
+    & .checkbox-group-collapse-container {
+        display: flex;
+        flex-direction: column;
+        & > .no-data-found {
+            padding: 10px;
+            margin: auto;
+        }
+    }
+}

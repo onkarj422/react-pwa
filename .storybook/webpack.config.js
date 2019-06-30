@@ -1,31 +1,4 @@
-/* webpack.config.js */
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const path = require('path');
-
-const htmlPlugin = new HtmlWebPackPlugin({
-    template: path.join(__dirname, 'app', 'index.html'),
-    filename: './index.html',
-});
-
 module.exports = {
-    /* ... */
-    // Tell webpack to begin building its
-    // dependency graph from this file.
-    entry: path.join(__dirname, 'app', 'index.js'),
-    // And to place the output in the `build` directory
-    output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'bundle.js',
-    },
-    devtool: "source-map",
-    mode: "development",
-    devServer: {
-        historyApiFallback: true,
-        inline: true,
-        port: 8080,
-        // disableHostCheck: true,
-        // host: '192.168.43.67',
-    },
     module: {
         rules: [
             {
@@ -63,5 +36,5 @@ module.exports = {
             },
         ],
     },
-    plugins: [htmlPlugin],
+    plugins: [],
 };

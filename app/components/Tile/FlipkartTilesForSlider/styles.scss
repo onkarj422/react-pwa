@@ -1,0 +1,59 @@
+.slider-container {
+    width: 195px;           //dynamic
+    display: flex;
+    flex-direction: column;
+    & > div > a {
+        padding: 25px 15px;
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        max-height: 366px;
+        text-align: center;
+        & > .catergory-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        & > .offer-percentage {
+            color: #388e3c;
+            padding-top: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        & > .extra-text {
+            opacity: .6;
+            padding-top: 7px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        & > .image-container {
+            height: 150px;      //dynamic
+            &:hover {
+                transform: scale(1.03);
+            }
+            & > div {
+                height: 150px;  //dynamic
+                width: 150px;   //dynamic
+                position: relative;
+                margin: 0 auto;
+                & > img {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    margin: auto;
+                    opacity: 0;
+                    max-width: 100%;
+                    max-height: 100%;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

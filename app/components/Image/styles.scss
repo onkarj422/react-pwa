@@ -1,0 +1,39 @@
+.component-image-container {
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+    & > div {
+      width: 100%;
+      position: relative;
+    //   padding-top: 120%;
+      & > div {
+        // padding-top: 120%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        & > img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+          transition: opacity .5s linear;
+          opacity: 1;
+          margin: auto;
+          z-index: 0;
+        }
+      }
+    }
+}

@@ -1,0 +1,13 @@
+.component-carousel-index-container {
+    width: 100%;
+    overflow: hidden;
+    & > .carousel-container {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        & > .carousel-item-container {
+            display: inline-block;
+            margin: 0 8px;
+        }
+    }
+}
