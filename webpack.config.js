@@ -20,11 +20,16 @@ module.exports = {
     devtool: "source-map",
     mode: "development",
     devServer: {
-        historyApiFallback: true,
+        historyApiFallback: {
+            disableDotRule: true,
+        },
         inline: true,
         port: 8080,
         disableHostCheck: true,
-        host: '192.168.43.67',
+        host: 'localhost',
+        proxy: {
+            '/api': 'http://localhost:4200/',
+        },
     },
     module: {
         rules: [

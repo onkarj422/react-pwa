@@ -8,15 +8,18 @@ class Router extends React.Component {
         this.state = {};
     }
 
-    renderComponent = ({ match, ...rest }, { component: Component, routes, ...route }) => (
-        <If condition={match}>
-            <Component {...rest} {...route} >
-                <If condition={routes && routes.length > 0}>
-                    {routes.map(this.renderRoute)}
-                </If>
-            </Component>
-        </If>
-    )
+    renderComponent = (props, { component: Component, routes, ...route }) => {
+        const { match } = props;
+        return (
+            <If condition={match}>
+                <Component {...props} {...route} >
+                    <If condition={routes && routes.length > 0}>
+                        {routes.map(this.renderRoute)}
+                    </If>
+                </Component>
+            </If>
+        );
+    }
 
     renderRoute = (route, index) => (
         <Route key={index} path={route.path} exact={route.exact}>

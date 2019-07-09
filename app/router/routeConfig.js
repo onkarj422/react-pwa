@@ -2,6 +2,7 @@ import React from 'react';
 import Attendance from '../modules/Attendance';
 import attendanceRoutes from '../modules/Attendance/routes';
 import Dashboard from '../modules/Dashboard';
+import Authentication from '../modules/Authentication';
 
 const About = () => <div>This is about us</div>;
 const Login = () => <div>This is login component</div>;
@@ -32,6 +33,10 @@ const routes = [
         path: '/about',
         component: About,
         exact: true,
+    },
+    {
+        path: '/auth/:token?',
+        component: Authentication,
     },
 ];
 

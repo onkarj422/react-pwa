@@ -1,16 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Router from './components/Router';
+import Immutable from 'immutable';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router/immutable';
+import Router from './router/components/Router';
 import routes from './router/routeConfig';
-import App from './main';
+import Layout from './layout';
+import configureStore, { history } from './redux/configureStore';
+
+const initialState = Immutable.Map();
+const store = configureStore(initialState);
+const MOUNT_NODE = document.getElementById('root');
 
 const render = () => (
-    <BrowserRouter>
-        <App>
-            <Router routes={routes} />
-        </App>
-    </BrowserRouter>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Layout>
+                <Router routes={routes} />
+            </Layout>
+        </ConnectedRouter>
+    </Provider>
 );
 
-ReactDOM.render(render(), document.getElementById('root'));
+ReactDOM.render(render(), MOUNT_NODE);

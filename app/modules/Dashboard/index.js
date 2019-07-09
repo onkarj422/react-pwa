@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Button } from '@material-ui/core';
 import withAppShell from '../../components/AppShell/withAppShell';
 
 const styled = withStyles({
@@ -15,11 +15,19 @@ class Dashboard extends React.Component {
         this.state = {};
     }
 
+    saveLocation = () => {
+
+    }
+
     render() {
         const { children, location } = this.props;
+        const authUrl = 'http://localhost:8080/api/auth/google';
         return (
             <div>
                 {location.pathname}
+                <Button onClick={this.saveLocation} href={authUrl} color="primary" variant="flat" size="medium">
+                    Google Sign-In
+                </Button>
                 {children}
             </div>
         );
